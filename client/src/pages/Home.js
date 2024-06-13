@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import vithuImage from '../images/vithu.png'; // Adjust the path according to your file structure
+import vithuImage from '../images/vithu.png';
+import vithuImage2 from '../images/vithu-image.png';
 
 function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -51,8 +52,9 @@ function Home() {
                         <li><a>Home</a></li>
                         <li><a>About Me</a></li>
                         <li><a>Skills</a></li>
-                        <li><a>LinkedIn</a></li>
-                        <li><a>GitHub</a></li>
+                        <li><a>My Projects</a></li>
+                        <li><a href="https://www.linkedin.com/in/vithushen-sivasubramaniam/">LinkedIn</a></li>
+                        <li><a href="https://github.com/vithushen">GitHub</a></li>
                     </ul>
                 </div>
             </div>
@@ -64,8 +66,9 @@ function Home() {
                         <li><a className="text-white block py-2 hover:bg-gray-800 bg-info">Home</a></li>
                         <li><a className="text-info block py-2 hover:bg-gray-800">About Me</a></li>
                         <li><a className="text-info block py-2 hover:bg-gray-800">Skills</a></li>
-                        <li><a className="text-info block py-2 hover:bg-gray-800">LinkedIn</a></li>
-                        <li><a className="text-info block py-2 hover:bg-gray-800">GitHub</a></li>
+                        <li><a className="text-info block py-2 hover:bg-gray-800">My Projects</a></li>
+                        <li><a className="text-info block py-2 hover:bg-gray-800" href="https://www.linkedin.com/in/vithushen-sivasubramaniam/">LinkedIn</a></li> 
+                        <li><a className="text-info block py-2 hover:bg-gray-800" href="https://github.com/vithushen">GitHub</a></li> 
                     </ul>
                 </div>
             )}
@@ -129,9 +132,43 @@ function Home() {
                     </div>
                 </div>
             </div>
+
+            {/* About Me Section */}
+            <div className="hero min-h-screen bg-gray-800 text-white">
+                <div className="hero-content flex-col lg:flex-row">
+                    <img src={vithuImage2} className="rounded-lg shadow-2xl w-96 h-96 lg:w-[60rem] lg:h-[60rem]" alt="About Me" />
+                    <div>
+                        <h1 className="text-5xl font-bold">About Me</h1>
+                        <h1 className="text-5xl font-bold">____________</h1>
+                        <div className="flex flex-wrap justify-center lg:justify-start w-full mt-12 gap-5">
+                            <div className="grid h-20 card bg-info rounded-box place-items-center text-black w-[175px]">
+                                <p className='font-bold'>Expertise</p>
+                                <p className="text-sm">Software Development</p>
+                            </div>
+                            <div className="grid h-20 card bg-info rounded-box place-items-center text-black w-[175px]">
+                                <p className='font-bold'>Location</p>
+                                <p className="text-sm">Montreal, Qc</p>
+                            </div>
+                            <div className="grid h-20 card bg-info rounded-box place-items-center text-black w-[175px]">
+                                <p className='font-bold'>Education</p>
+                                <p className="text-sm">Concordia University</p>
+                            </div>
+                            <div className="grid h-20 card bg-info rounded-box place-items-center text-black w-[175px]">
+                                <p className='font-bold'>Graduation</p>
+                                <p className="text-sm">June 2023</p>
+                            </div>
+                        </div>
+
+                        <p className="py-6">After 5 years of programming, I have learned a lot in frontend and backend development, particularly in React with proficiency in HTML, CSS, JavaScript, Java, Python and SQL. I have a portfolio of user-friendly, responsive websites, showcasing my dedication to creating user experiences. Collaborating within teams of various sizes, I have successfully worked on projects using Agile and Scrum methodologies, demonstrating my ability to work in a collaborative and fast-paced environment using Github and Jira.</p>
+
+                        <p className="py-0">I have also received a certification in the Foundation of SRE from Wiley Edge Academy. This certification has equipped me with advanced skills in executing Production Support and Site Reliability Engineering responsibilities. Utilizing tools such as Kubernetes, Grafana, and Prometheus, I've gained experience in monitoring website performance to ensure optimal operation and reliability. Moreover, I've implemented automation strategies to reduce manual tasks and toil, thereby enhancing efficiency and reliability in website operations. Furthermore, I've developed robust testing procedures using Jenkins, automating testing processes to maintain code quality and reliability throughout the development lifecycle.</p>
+
+                        <button className="btn btn-info mt-5">Get Started</button>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
 
 export default Home;
-
