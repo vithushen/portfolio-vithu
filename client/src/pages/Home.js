@@ -2,6 +2,44 @@ import React, { useState, useRef } from 'react';
 import vithuImage from '../images/vithu.png';
 import vithuImage2 from '../images/vithu-image.png';
 
+
+
+import blip1 from '../images/blip-1.png';
+import blip2 from '../images/blip-2.png';
+import blip3 from '../images/blip-3.png';
+import blip4 from '../images/blip-4.png';
+import blip5 from '../images/blip-5.png';
+import blip6 from '../images/blip-6.png';
+import blip7 from '../images/blip-7.png';
+
+import ryu1 from '../images/ryu-1.png';
+import ryu2 from '../images/ryu-2.png';
+import ryu3 from '../images/ryu-3.png';
+import ryu4 from '../images/ryu-4.png';
+import ryu5 from '../images/ryu-5.png';
+
+import datum1 from '../images/datum-1.png';
+import datum2 from '../images/datum-2.png';
+import datum3 from '../images/datum-3.png';
+import datum4 from '../images/datum-4.png';
+import datum5 from '../images/datum-5.png';
+
+import covidex1 from '../images/covidex-1.png';
+import covidex2 from '../images/covidex-2.png';
+import covidex3 from '../images/covidex-3.png';
+
+import nba1 from '../images/nba-1.png';
+import nba2 from '../images/fantasy.png';
+
+import mave1 from '../images/mave-1.png';
+import mave2 from '../images/mave-2.png';
+import mave3 from '../images/mave-3.png';
+import mave4 from '../images/mave-4.png'; 
+
+import eldr1 from '../images/elder-1.png';
+import eldr2 from '../images/elder-2.png';
+import eldr3 from '../images/elder-3.png';
+
 function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [message, setMessage] = useState('');
@@ -39,6 +77,123 @@ function Home() {
         aboutMeRef.current.scrollIntoView({ behavior: 'smooth' });
     };
 
+    // Assuming you have project data
+    const initialProjects = [
+        {
+            id: 1,
+            title: 'Blip Barber',
+            year: 2024,
+            description: 'Our platform serves as a dynamic marketplace, connecting skilled home barbers with customers seeking affordable and convenient haircuts right in their neighborhood. Designed with both barbers and customers in mind, our application offers a seamless experience for both parties. Barbers gain a powerful platform to showcase their services and reach a broader audience, while customers can easily browse and book appointments with trusted barbers nearby. Stay tuned as we continue to develop this exciting project, shaping the future of home barbering and enhancing accessibility to quality haircare services for all.',
+            images: [
+                blip1,
+                blip2,
+                blip3,
+                blip4,
+                blip5,
+                blip6,
+                blip7
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=ynMk2EwRi4Q'
+
+        },
+        {
+            id: 2,
+            title: 'RYU Inventory',
+            year: 2024,
+            description: 'A user-friendly web application designed for the Ryu Restaurant manager to efficiently keep track and maintaining their inventory. With our intuitive interface, managers can effortlessly perform inventory counts at the end of each month, ensuring accurate reporting. Our application allows users to easily add, remove, or edit products within their inventory database, providing ultimate flexibility and control. Before using our application, they were using excel spreadsheets but now making it much more simple with a digital approach to inventory management.',
+            images: [
+                ryu1,
+                ryu2,
+                ryu3,
+                ryu4,
+                ryu5
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14'
+
+        },
+        {
+            id: 3,
+            title: 'Datum.io',
+            year: 2023, // Add the year for this project
+            description: 'The purpose of this project is to design a mobile application to allow researchers to collect data for a specific study that encourages repeated engagement through gamification. A user-centered approach will be applied to encourage usability and engagement. The application would be usable for a variety of different research studies (e.g. mental health studies, product engagement studies, etc.). Hence, it could be used in a wide array of fields.',
+            images: [
+                datum1,
+                datum2,
+                datum3,
+                datum4,
+                datum5
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+
+        },
+        {
+            id: 4,
+            title: 'Covidex',
+            year: 2022, // Add the year for this project
+            description: 'Covidex is a covid-19 tracking application designed for multiple users such as common patients, doctors, health officials and and immigration officials. Its goal is to help us deal with the reality of the situation we currently face and try to move forward. Patients would be able to upload their health status details onto the platform. This in turn would be monitored by both doctors and health officials to both help the patients as well as track the progress of the virus. We would be able to monitor daily cases and get a better understanding of how the virus is changing to help mitigate the risks for the rest of the population.',
+            images: [
+                covidex2,
+                covidex1,
+                covidex3
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+
+        },
+        {
+            id: 5,
+            title: 'NBA Fantasy Helper',
+            year: 2023, // Add the year for this project
+            description: 'NBA Fantasy Draft Helper is your ultimate companion for building a winning fantasy basketball team! This innovative project brings together the power of data and user-friendly design, providing NBA enthusiasts with a comprehensive tool to make the best decisions during their fantasy drafts. NBA Stats Explorer simplifies the process of understanding player performance by offering a visually appealing and easy-to-navigate platform. Whether youre a fantasy basketball enthusiast, a sports analyst, or just a passionate NBA fan, this tool provides a unique perspective on player capabilities, fostering a deeper appreciation for the game.',
+            images: [
+                nba1,
+                nba2
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+
+        },
+        {
+            id: 6,
+            title: 'Mave Grocery Store',
+            year: 2021, // Add the year for this project
+            description: 'Mave Grocery Store project is a web application where customers can experience the convenience of grocery shopping from the comfort of their homes. By creating a personalized account, users gain access to a vast array of products from fresh produce to cleaning supplies. Our user-friendly interface allows customers to browse through a catalog, add items to their cart and securely complete their purchases online. With simple navigation, secure payment options and timely delivery services, our web application redefines the way people shop for groceries, making it effortless, efficient, and enjoyable.',
+            images: [
+                mave1,
+                mave2,
+                mave3,
+                mave4
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+
+        },
+        {
+            id: 7,
+            title: 'Eldr ',
+            year: 2021, // Add the year for this project
+            description: 'Eldr is a friendly app made for elderly people. It helps them talk to others, play games, and make new friends easily. The app is easy to use and makes seniors feel less lonely by connecting them with others. The Figma project and mockup website show how Eldr works, making it simple for everyone to understand its purpose: bringing happiness and friendship to older adults. Eldr is all about making seniors lives better by connecting them with others in a fun and easy way.',
+            images: [
+                eldr1,
+                eldr2,
+                eldr3
+            ],
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+
+        }
+    ];
+
+    const [projects, setProjects] = useState(initialProjects);
+    const [currentImageIndex, setCurrentImageIndex] = useState(projects.map(() => 0));
+
+    const handlePreviousImage = (projectId) => {
+        setCurrentImageIndex((prevIndexes) =>
+            prevIndexes.map((index, id) => (id === projectId ? (index > 0 ? index - 1 : projects[id].images.length - 1) : index))
+        );
+    };
+
+    const handleNextImage = (projectId) => {
+        setCurrentImageIndex((prevIndexes) =>
+            prevIndexes.map((index, id) => (id === projectId ? (index < projects[id].images.length - 1 ? index + 1 : 0) : index))
+        );
+    };
 
     return (
         <div className='bg-gray-900 text-white'>
@@ -178,10 +333,54 @@ function Home() {
                         <p className="py-6 text-center lg:text-left">After 5 years of programming, I have learned a lot in frontend and backend development, particularly in React with proficiency in HTML, CSS, JavaScript, Java, Python and SQL. I have a portfolio of user-friendly, responsive websites, showcasing my dedication to creating user experiences. Collaborating within teams of various sizes, I have successfully worked on projects using Agile and Scrum methodologies, demonstrating my ability to work in a collaborative and fast-paced environment using Github and Jira.</p>
 
                         <p className="py-0 text-center lg:text-left">I have also received a certification in the Foundation of SRE from Wiley Edge Academy. This certification has equipped me with advanced skills in executing Production Support and Site Reliability Engineering responsibilities. Utilizing tools such as Kubernetes, Grafana, and Prometheus, I've gained experience in monitoring website performance to ensure optimal operation and reliability. Moreover, I've implemented automation strategies to reduce manual tasks and toil, thereby enhancing efficiency and reliability in website operations. Furthermore, I've developed robust testing procedures using Jenkins, automating testing processes to maintain code quality and reliability throughout the development lifecycle.</p>
-
                     </div>
                 </div>
             </div>
+
+
+            {/* MyProj Section */}
+
+            {/* MyProj Section */}
+            <div className="bg-gray-900 text-white py-20">
+                <h1 className="text-5xl font-bold text-center mb-5">My Projects</h1>
+                <h1 className="text-5xl font-bold text-center">____________</h1>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl mx-auto px-4 mt-10">
+                    {/* Mapping through projects to create cards */}
+                    {projects.map((project, projectId) => (
+                        <div key={project.id} className="bg-gray-800 rounded-lg overflow-hidden shadow-xl relative">
+                            <div className="relative w-full overflow-hidden">
+                                {/* Adjusted the width and height of the image */}
+                                <img
+                                    src={project.images[currentImageIndex[projectId]]}
+                                    alt={project.title}
+                                    className="w-full h-96" // Adjust the height as needed
+                                />
+                                <button
+                                    className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                                    onClick={() => handlePreviousImage(projectId)}
+                                >
+                                    &#9664;
+                                </button>
+                                <button
+                                    className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
+                                    onClick={() => handleNextImage(projectId)}
+                                >
+                                    &#9654;
+                                </button>
+                            </div>
+                            <div className="p-6">
+                                <h2 className="text-2xl font-bold mb-2">{project.title} ({project.year})</h2>
+                                <p className="text-gray-300">{project.description}</p>
+                                <div className="mt-4 flex justify-end">
+                                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
 
         </div>
     );
