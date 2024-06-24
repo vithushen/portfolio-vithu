@@ -1,8 +1,7 @@
 import React, { useState, useRef } from 'react';
 import vithuImage from '../images/vithu.png';
 import vithuImage2 from '../images/vithu-image.png';
-
-
+import vithuCV from '../images/vithuCV.pdf';
 
 import blip1 from '../images/blip-1.png';
 import blip2 from '../images/blip-2.png';
@@ -34,7 +33,7 @@ import nba2 from '../images/fantasy.png';
 import mave1 from '../images/mave-1.png';
 import mave2 from '../images/mave-2.png';
 import mave3 from '../images/mave-3.png';
-import mave4 from '../images/mave-4.png'; 
+import mave4 from '../images/mave-4.png';
 
 import eldr1 from '../images/elder-1.png';
 import eldr2 from '../images/elder-2.png';
@@ -44,6 +43,8 @@ function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [message, setMessage] = useState('');
     const [userEmail, setUserEmail] = useState('');
+    const [userSubject, setUserSubject] = useState('');
+
 
     const maxWords = 500;
 
@@ -59,11 +60,33 @@ function Home() {
         setUserEmail(e.target.value);
     };
 
-    const sendEmail = () => {
-        // You can implement sending email functionality here
-        // For now, let's just log the email content
-        console.log("Email Sent!");
+    const sendEmail = async () => {
+        try {
+            const response = await fetch('http://localhost:5000/api/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    to: userEmail,  // Assuming userEmail is the recipient email
+                    subject: userSubject,  // Assuming userSubject is the subject of the email
+                    message: message  // Assuming message is the content of the email
+                }),
+            });
+    
+            const data = await response.json();
+            console.log(data);  // Log the response from backend
+    
+            // Optionally reset form fields or show a success message
+            setMessage('');
+            setUserEmail('');
+            // Optionally close the modal or provide feedback to the user
+        } catch (error) {
+            console.error('Error sending email:', error);
+            // Handle error scenario - show error message to the user
+        }
     };
+    
 
     const wordCount = () => {
         const words = message.trim().split(/\s+/).filter(Boolean);
@@ -76,6 +99,14 @@ function Home() {
     const scrollToAboutMe = () => {
         aboutMeRef.current.scrollIntoView({ behavior: 'smooth' });
     };
+
+    const myProjectRef = useRef(null);
+
+    // Function to scroll to About Me section
+    const scrollToProjectRef = () => {
+        myProjectRef.current.scrollIntoView({ behavior: 'smooth' });
+    };
+
 
     // Assuming you have project data
     const initialProjects = [
@@ -93,7 +124,9 @@ function Home() {
                 blip6,
                 blip7
             ],
-            demoLink: 'https://www.youtube.com/watch?v=ynMk2EwRi4Q'
+            demoLink: 'https://www.youtube.com/watch?v=ynMk2EwRi4Q',
+            sourceLink: 'https://github.com/vithushen/blip'
+
 
         },
         {
@@ -108,7 +141,8 @@ function Home() {
                 ryu4,
                 ryu5
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14'
+            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14',
+            sourceLink: 'https://github.com/vithushen/ryu-lavia'
 
         },
         {
@@ -123,7 +157,8 @@ function Home() {
                 datum4,
                 datum5
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+            demoLink: 'https://datum-io.app/',
+            sourceLink: 'https://github.com/HamzahSheikh/datum.io'
 
         },
         {
@@ -136,7 +171,8 @@ function Home() {
                 covidex1,
                 covidex3
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+            demoLink: 'https://covidex.live/',
+            sourceLink: 'https://github.com/HamzahSheikh/covidex-public'
 
         },
         {
@@ -148,7 +184,8 @@ function Home() {
                 nba1,
                 nba2
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+            demoLink: 'https://vithushen.github.io/NBA-Fantasy-Helper/',
+            sourceLink: 'https://github.com/vithushen/NBA-Fantasy-Helper'
 
         },
         {
@@ -162,7 +199,8 @@ function Home() {
                 mave3,
                 mave4
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+            demoLink: 'https://mave-grocery.web.app/index.html',
+            sourceLink: 'https://github.com/Ellendra-JH/mave'
 
         },
         {
@@ -175,7 +213,8 @@ function Home() {
                 eldr2,
                 eldr3
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14' // Add demo link for this project
+            demoLink: 'https://www.figma.com/proto/AeMKmKMeebpAjkK44w4yGK/Soen-357-Mini-Project?node-id=39-689&starting-point-node-id=39%3A590',
+            sourceLink: 'http://localhost:3000/'
 
         }
     ];
@@ -214,10 +253,9 @@ function Home() {
                     <ul className="menu menu-horizontal text-lg space-x-8"> {/* Increased font size */}
                         <li><a>Home</a></li>
                         <li><a onClick={scrollToAboutMe}>About Me</a></li> {/* Added onClick handler */}
-                        <li><a>Skills</a></li>
-                        <li><a>My Projects</a></li>
-                        <li><a href="https://www.linkedin.com/in/vithushen-sivasubramaniam/">LinkedIn</a></li>
-                        <li><a href="https://github.com/vithushen">GitHub</a></li>
+                        <li><a onClick={scrollToProjectRef}>My Projects</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/vithushen-sivasubramaniam/">LinkedIn</a></li>
+                        <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/vithushen">GitHub</a></li>
                     </ul>
                 </div>
             </div>
@@ -228,8 +266,7 @@ function Home() {
                     <ul className="menu menu-vertical text-lg">
                         <li><a className="text-white block py-2 hover:bg-gray-800 bg-info">Home</a></li>
                         <li><a className="text-info block py-2 hover:bg-gray-800" onClick={scrollToAboutMe}>About Me</a></li> {/* Added onClick handler */}
-                        <li><a className="text-info block py-2 hover:bg-gray-800">Skills</a></li>
-                        <li><a className="text-info block py-2 hover:bg-gray-800">My Projects</a></li>
+                        <li><a onClick={scrollToProjectRef} className="text-info block py-2 hover:bg-gray-800">My Projects</a></li>
                         <li><a className="text-info block py-2 hover:bg-gray-800" href="https://www.linkedin.com/in/vithushen-sivasubramaniam/">LinkedIn</a></li>
                         <li><a className="text-info block py-2 hover:bg-gray-800" href="https://github.com/vithushen">GitHub</a></li>
                     </ul>
@@ -258,7 +295,7 @@ function Home() {
                         <div className="mt-4">
                             <button className="btn btn-info mr-2" onClick={() => document.getElementById('my_modal_3').showModal()}>Contact Me</button>
                             <dialog id="my_modal_3" className="modal">
-                                <div className="modal-box bg-gray-900 p-8 rounded-lg ">
+                                <div className="modal-box bg-gray-900 p-8 rounded-lg">
                                     <form onSubmit={sendEmail}>
                                         <button className="btn btn-sm btn-circle btn-ghost absolute top-2 right-2" onClick={() => document.getElementById('my_modal_3').close()}>✕</button>
                                         <h1 className="text-3xl font-bold mb-4 text-center">Send a Message to Vithu!</h1>
@@ -267,17 +304,25 @@ function Home() {
                                             type="email"
                                             id="userEmail"
                                             name="userEmail"
-                                            className="w-full px-4 py-2 mb-4 border rounded-lg"
+                                            className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
                                             placeholder="Enter your email"
                                             value={userEmail}
                                             onChange={handleEmailChange}
                                             required
                                         />
-                                        <label htmlFor="emailTo" className="block mb-3">To: Vithu.99@hotmail.com</label>
+                                        <label htmlFor="subject" className="block mb-2">Subject</label>
+                                        <input
+                                            type="subject"
+                                            id="userSubject"
+                                            name="userSubject"
+                                            className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
+                                            placeholder="Enter your Subject"
+                                            required
+                                        />
                                         <textarea
                                             id="emailContent"
                                             name="emailContent"
-                                            className="w-full px-4 py-2 mb-4 border rounded-lg"
+                                            className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
                                             rows="6"
                                             maxLength="500"
                                             placeholder="Enter your message (500 words max)"
@@ -290,7 +335,7 @@ function Home() {
                                     </form>
                                 </div>
                             </dialog>
-                            <button className="btn btn-outline btn-info">Download CV</button>
+                            <a onClick={() => { window.open(vithuCV, '_blank'); }} download className="btn btn-outline btn-info">Download CV</a>
                         </div>
                     </div>
                 </div>
@@ -339,9 +384,7 @@ function Home() {
 
 
             {/* MyProj Section */}
-
-            {/* MyProj Section */}
-            <div className="bg-gray-900 text-white py-20">
+            <div ref={myProjectRef} className="bg-gray-900 text-white py-20">
                 <h1 className="text-5xl font-bold text-center mb-5">My Projects</h1>
                 <h1 className="text-5xl font-bold text-center">____________</h1>
 
@@ -371,9 +414,10 @@ function Home() {
                             </div>
                             <div className="p-6">
                                 <h2 className="text-2xl font-bold mb-2">{project.title} ({project.year})</h2>
-                                <p className="text-gray-300">{project.description}</p>
-                                <div className="mt-4 flex justify-end">
-                                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">View Demo</a>
+                                <p className="text-gray-300 mt-5">{project.description}</p>
+                                <div className="mt-7 flex justify-end">
+                                    <a href={project.sourceLink} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Source Code</a>
+                                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="btn btn-info ml-3">View Demo</a>
                                 </div>
                             </div>
                         </div>
@@ -381,7 +425,11 @@ function Home() {
                 </div>
             </div>
 
-
+            <footer className="footer footer-center p-4 bg-gray-800 text-base-content">
+                <aside>
+                    <p style={{color:'white'}}>Copyright © 2024 - All right reserved by Vithushen Sivasubramaniam</p>
+                </aside>
+            </footer>
         </div>
     );
 }
