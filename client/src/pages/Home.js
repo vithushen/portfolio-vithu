@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import emailjs from 'emailjs-com';
 import vithuImage from '../images/vithu.png';
 import vithuImage2 from '../images/vithu-image.png';
 import vithuCV from '../images/vithuCV.pdf';
@@ -44,7 +45,8 @@ function Home() {
     const [message, setMessage] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [userSubject, setUserSubject] = useState('');
-
+    const [alertMessage, setAlertMessage] = useState('');
+    const [alertType, setAlertType] = useState('');
 
     const maxWords = 500;
 
@@ -60,33 +62,43 @@ function Home() {
         setUserEmail(e.target.value);
     };
 
-    const sendEmail = async () => {
-        try {
-            const response = await fetch('http://localhost:5000/api/email', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    to: userEmail,  // Assuming userEmail is the recipient email
-                    subject: userSubject,  // Assuming userSubject is the subject of the email
-                    message: message  // Assuming message is the content of the email
-                }),
-            });
-    
-            const data = await response.json();
-            console.log(data);  // Log the response from backend
-    
-            // Optionally reset form fields or show a success message
-            setMessage('');
-            setUserEmail('');
-            // Optionally close the modal or provide feedback to the user
-        } catch (error) {
-            console.error('Error sending email:', error);
-            // Handle error scenario - show error message to the user
-        }
+    const handleSubjectChange = (e) => {
+        setUserSubject(e.target.value);
     };
-    
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        const templateParams = {
+            user_email: userEmail,
+            subject: userSubject,
+            message: message
+        };
+
+        emailjs.send('service_6yjvo48', 'template_xwnv2tr', templateParams, 'PnxEJdFPtRShqkXqO')
+            .then((response) => {
+                console.log('Email sent successfully!', response.status, response.text);
+                setAlertMessage('Email sent successfully!');
+                setAlertType('success');
+                setMessage('');
+                setUserEmail('');
+                setUserSubject('');
+                document.getElementById('my_modal_3').close(); // Close dialog on success
+
+            })
+            .catch((error) => {
+                console.error('Error sending email:', error);
+                setAlertMessage('Error sending email. Please try again.');
+                setAlertType('error');
+            })
+            .finally(() => {
+                // Clear alert message after 5 seconds
+                setTimeout(() => {
+                    setAlertMessage('');
+                    setAlertType('');
+                }, 5000); // 5000 milliseconds = 5 seconds
+            });
+    };
 
     const wordCount = () => {
         const words = message.trim().split(/\s+/).filter(Boolean);
@@ -124,7 +136,7 @@ function Home() {
                 blip6,
                 blip7
             ],
-            demoLink: 'https://www.youtube.com/watch?v=ynMk2EwRi4Q',
+            demoLink: 'https://www.youtube.com/watch?v=AWpmPlN0q5o',
             sourceLink: 'https://github.com/vithushen/blip'
 
 
@@ -141,7 +153,7 @@ function Home() {
                 ryu4,
                 ryu5
             ],
-            demoLink: 'https://www.youtube.com/watch?v=Ro7yHf_pU14',
+            demoLink: 'https://www.youtube.com/watch?v=HBRPCgAwtnI',
             sourceLink: 'https://github.com/vithushen/ryu-lavia'
 
         },
@@ -272,10 +284,14 @@ function Home() {
                     </ul>
                 </div>
             )}
-
+               {alertMessage && (
+                <div className={`alert alert-success`}>
+                    {alertMessage}
+                </div>
+            )}
             {/* Hero Section */}
             <div className="hero min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="hero-content flex-col lg:flex-row-reverse items-center lg:items-start">
                     <img
                         src={vithuImage}
                         className="w-96 h-96 lg:w-[36rem] lg:h-[36rem] rounded-full mb-8 lg:mb-0 lg:ml-8"
@@ -284,15 +300,15 @@ function Home() {
                             boxShadow: '0 4px 6px rgba(56, 189, 248, 0.9)' // Replace with the shadow color you want
                         }}
                     />
-                    <div className='text-center lg:text-left'>
+                    <div className='text-center lg:text-left max-w-lg'>
                         <h1 className="text-5xl font-bold">Hi, I'm Vithushen Sivasubramaniam!</h1>
                         <h2 className="text-4xl font-bold py-2">
                             And I am a <span className="text-info">Full-Stack Developer</span>
                         </h2>
                         <p className="mt-4">
-                            My name is Vithushen Sivasubramaniam and I am a graduate from Concordia University as a Software Engineer and have a passion for programming. Having recently completed my studies and acquired a solid foundation in programming languages. I have strong knowledge in Frontend, Backend, Databases, SRE, Testing and many other skills that I would love to discuss in an interview!
+                            My name is Vithushen Sivasubramaniam and I am a graduate from Concordia University as a Software Engineer with a passion for programming. I have recently completed my studies and acquired a solid foundation in programming languages, with strong knowledge in Frontend, Backend, Databases, SRE, Testing, and many other skills that I would love to discuss in an interview!
                         </p>
-                        <div className="mt-4">
+                        <div className="mt-4 flex items-center justify-center lg:justify-start">
                             <button className="btn btn-info mr-2" onClick={() => document.getElementById('my_modal_3').showModal()}>Contact Me</button>
                             <dialog id="my_modal_3" className="modal">
                                 <div className="modal-box bg-gray-900 p-8 rounded-lg">
@@ -310,13 +326,14 @@ function Home() {
                                             onChange={handleEmailChange}
                                             required
                                         />
-                                        <label htmlFor="subject" className="block mb-2">Subject</label>
+                                        <label htmlFor="userSubject" className="block mb-2">Subject:</label>
                                         <input
-                                            type="subject"
+                                            type="text"
                                             id="userSubject"
                                             name="userSubject"
                                             className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
                                             placeholder="Enter your Subject"
+                                            onChange={handleSubjectChange}
                                             required
                                         />
                                         <textarea
@@ -335,11 +352,12 @@ function Home() {
                                     </form>
                                 </div>
                             </dialog>
-                            <a onClick={() => { window.open(vithuCV, '_blank'); }} download className="btn btn-outline btn-info">Download CV</a>
+                            <a href={vithuCV} target="_blank" rel="noopener noreferrer" download className="btn btn-outline btn-info ml-2">Download CV</a>
                         </div>
                     </div>
                 </div>
             </div>
+
 
             {/* About Me Section */}
             <div ref={aboutMeRef} className="hero min-h-screen bg-gray-800 text-white">
@@ -397,7 +415,7 @@ function Home() {
                                 <img
                                     src={project.images[currentImageIndex[projectId]]}
                                     alt={project.title}
-                                    className="w-full h-96" // Adjust the height as needed
+                                    className="w-full h-64 sm:h-80 md:h-96" // Adjust the height for different screen sizes
                                 />
                                 <button
                                     className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full"
@@ -427,7 +445,7 @@ function Home() {
 
             <footer className="footer footer-center p-4 bg-gray-800 text-base-content">
                 <aside>
-                    <p style={{color:'white'}}>Copyright © 2024 - All right reserved by Vithushen Sivasubramaniam</p>
+                    <p style={{ color: 'white' }}>Copyright © 2024 - All right reserved by Vithushen Sivasubramaniam</p>
                 </aside>
             </footer>
         </div>
