@@ -289,74 +289,75 @@ function Home() {
                     {alertMessage}
                 </div>
             )}
-            {/* Hero Section */}
-            <div className="hero min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse items-center lg:items-start">
-                    <img
-                        src={vithuImage}
-                        className="w-96 h-96 lg:w-[36rem] lg:h-[36rem] rounded-full mb-8 lg:mb-0 lg:ml-8"
-                        alt="Hero"
-                        style={{
-                            boxShadow: '0 4px 6px rgba(56, 189, 248, 0.9)' // Replace with the shadow color you want
-                        }}
-                    />
-                    <div className='text-center lg:text-left max-w-lg'>
-                        <h1 className="text-5xl font-bold">Hi, I'm Vithushen Sivasubramaniam!</h1>
-                        <h2 className="text-4xl font-bold py-2">
-                            And I am a <span className="text-info">Full-Stack Developer</span>
-                        </h2>
-                        <p className="mt-4">
-                            My name is Vithushen Sivasubramaniam and I am a graduate from Concordia University as a Software Engineer with a passion for programming. I have recently completed my studies and acquired a solid foundation in programming languages, with strong knowledge in Frontend, Backend, Databases, SRE, Testing, and many other skills that I would love to discuss in an interview!
-                        </p>
-                        <div className="mt-4 flex items-center justify-center lg:justify-start">
-                            <button className="btn btn-info mr-2" onClick={() => document.getElementById('my_modal_3').showModal()}>Contact Me</button>
-                            <dialog id="my_modal_3" className="modal">
-                                <div className="modal-box bg-gray-900 p-8 rounded-lg">
-                                    <form onSubmit={sendEmail}>
-                                        <button className="btn btn-sm btn-circle btn-ghost absolute top-2 right-2" onClick={() => document.getElementById('my_modal_3').close()}>✕</button>
-                                        <h1 className="text-3xl font-bold mb-4 text-center">Send a Message to Vithu!</h1>
-                                        <label htmlFor="userEmail" className="block mb-2">From:</label>
-                                        <input
-                                            type="email"
-                                            id="userEmail"
-                                            name="userEmail"
-                                            className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
-                                            placeholder="Enter your email"
-                                            value={userEmail}
-                                            onChange={handleEmailChange}
-                                            required
-                                        />
-                                        <label htmlFor="userSubject" className="block mb-2">Subject:</label>
-                                        <input
-                                            type="text"
-                                            id="userSubject"
-                                            name="userSubject"
-                                            className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
-                                            placeholder="Enter your Subject"
-                                            onChange={handleSubjectChange}
-                                            required
-                                        />
-                                        <textarea
-                                            id="emailContent"
-                                            name="emailContent"
-                                            className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
-                                            rows="6"
-                                            maxLength="500"
-                                            placeholder="Enter your message (500 words max)"
-                                            value={message}
-                                            onChange={handleChange}
-                                            required
-                                        ></textarea>
-                                        <div className="text-right text-gray-500 mb-3">{wordCount()}/{maxWords}</div>
-                                        <button type="submit" className="btn btn-info text-white float-right">Send</button>
-                                    </form>
-                                </div>
-                            </dialog>
-                            <a href={vithuCV} target="_blank" rel="noopener noreferrer" download className="btn btn-outline btn-info ml-2">Download CV</a>
-                        </div>
+ {/* Hero Section */}
+<div className="hero min-h-screen">
+    <div className="hero-content flex-col lg:flex-row-reverse items-center lg:items-start">
+        <img
+            src={vithuImage}
+            className="w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[36rem] lg:h-[36rem] rounded-full mb-6 sm:mb-8 md:mb-10 lg:mb-0 lg:ml-8"
+            alt="Hero"
+            style={{
+                boxShadow: '0 4px 6px rgba(56, 189, 248, 0.9)' // Replace with the shadow color you want
+            }}
+        />
+        <div className="text-center lg:text-left max-w-lg px-4 sm:px-8 md:px-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">Hi, I'm Vithushen Sivasubramaniam!</h1>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold py-2">
+                And I am a <span className="text-info">Full-Stack Developer</span>
+            </h2>
+            <p className="mt-4 text-sm sm:text-base md:text-lg">
+                My name is Vithushen Sivasubramaniam and I am a graduate from Concordia University as a Software Engineer with a passion for programming. I have recently completed my studies and acquired a solid foundation in programming languages, with strong knowledge in Frontend, Backend, Databases, SRE, Testing, and many other skills that I would love to discuss in an interview!
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start">
+                <button className="btn btn-info mb-4 sm:mb-0 sm:mr-4" onClick={() => document.getElementById('my_modal_3').showModal()}>Contact Me</button>
+                <dialog id="my_modal_3" className="modal">
+                    <div className="modal-box bg-gray-900 p-8 rounded-lg">
+                        <form onSubmit={sendEmail}>
+                            <button className="btn btn-sm btn-circle btn-ghost absolute top-2 right-2" onClick={() => document.getElementById('my_modal_3').close()}>✕</button>
+                            <h1 className="text-3xl font-bold mb-4 text-center">Send a Message to Vithu!</h1>
+                            <label htmlFor="userEmail" className="block mb-2">From:</label>
+                            <input
+                                type="email"
+                                id="userEmail"
+                                name="userEmail"
+                                className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
+                                placeholder="Enter your email"
+                                value={userEmail}
+                                onChange={handleEmailChange}
+                                required
+                            />
+                            <label htmlFor="userSubject" className="block mb-2">Subject:</label>
+                            <input
+                                type="text"
+                                id="userSubject"
+                                name="userSubject"
+                                className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
+                                placeholder="Enter your Subject"
+                                onChange={handleSubjectChange}
+                                required
+                            />
+                            <textarea
+                                id="emailContent"
+                                name="emailContent"
+                                className="w-full px-4 py-2 mb-4 border rounded-lg text-black"
+                                rows="6"
+                                maxLength="500"
+                                placeholder="Enter your message (500 words max)"
+                                value={message}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
+                            <div className="text-right text-gray-500 mb-3">{wordCount()}/{maxWords}</div>
+                            <button type="submit" className="btn btn-info text-white float-right">Send</button>
+                        </form>
                     </div>
-                </div>
+                </dialog>
+                <a href={vithuCV} target="_blank" rel="noopener noreferrer" download className="btn btn-outline btn-info">Download CV</a>
             </div>
+        </div>
+    </div>
+</div>
+
 
 
             {/* About Me Section */}
