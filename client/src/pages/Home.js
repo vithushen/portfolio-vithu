@@ -40,6 +40,13 @@ import eldr1 from '../images/elder-1.png';
 import eldr2 from '../images/elder-2.png';
 import eldr3 from '../images/elder-3.png';
 
+
+import hiddeneggs1 from '../images/hiddeneggs-1.png';
+import hiddeneggs2 from '../images/hiddeneggs-2.png';
+import hiddeneggs3 from '../images/hiddeneggs-3.png';
+import hiddeneggs4 from '../images/hiddeneggs-4.png';
+import hiddeneggs5 from '../images/hiddeneggs-5.png';
+
 function Home() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [message, setMessage] = useState('');
@@ -124,6 +131,23 @@ function Home() {
     const initialProjects = [
         {
             id: 1,
+            title: 'HiddenEggs',
+            year: 2024,
+            description: 'HiddenEggs is an ad-free website designed for Call of Duty: Black Ops 6 players to easily look up and complete all zombies-related Easter eggs. It provides clear, step-by-step guides for every Easter egg across all maps, making it simple for players to uncover hidden secrets and challenges. Whether you\'re a seasoned pro or a newcomer, HiddenEggs is the ultimate resource for navigating the complex world of Zombies Easter eggs, all without the interruption of ads.',
+            images: [
+                hiddeneggs1,
+                hiddeneggs2,
+                hiddeneggs5,
+                hiddeneggs3,
+                hiddeneggs4
+            ],
+            demoLink: 'https://www.hiddeneggs.xyz/',
+            sourceLink: 'https://github.com/vithushen/hiddenegg'
+
+
+        },
+        {
+            id: 2,
             title: 'Blip Barber',
             year: 2024,
             description: 'Our platform serves as a dynamic marketplace, connecting skilled home barbers with customers seeking affordable and convenient haircuts right in their neighborhood. Designed with both barbers and customers in mind, our application offers a seamless experience for both parties. Barbers gain a powerful platform to showcase their services and reach a broader audience, while customers can easily browse and book appointments with trusted barbers nearby. Stay tuned as we continue to develop this exciting project, shaping the future of home barbering and enhancing accessibility to quality haircare services for all.',
@@ -142,7 +166,7 @@ function Home() {
 
         },
         {
-            id: 2,
+            id: 3,
             title: 'RYU Inventory',
             year: 2024,
             description: 'A user-friendly web application designed for the Ryu Restaurant manager to efficiently keep track and maintaining their inventory. With our intuitive interface, managers can effortlessly perform inventory counts at the end of each month, ensuring accurate reporting. Our application allows users to easily add, remove, or edit products within their inventory database, providing ultimate flexibility and control. Before using our application, they were using excel spreadsheets but now making it much more simple with a digital approach to inventory management.',
@@ -158,7 +182,7 @@ function Home() {
 
         },
         {
-            id: 3,
+            id: 4,
             title: 'Datum.io',
             year: 2023, // Add the year for this project
             description: 'The purpose of this project is to design a mobile application to allow researchers to collect data for a specific study that encourages repeated engagement through gamification. A user-centered approach will be applied to encourage usability and engagement. The application would be usable for a variety of different research studies (e.g. mental health studies, product engagement studies, etc.). Hence, it could be used in a wide array of fields.',
@@ -174,7 +198,7 @@ function Home() {
 
         },
         {
-            id: 4,
+            id: 5,
             title: 'Covidex',
             year: 2022, // Add the year for this project
             description: 'Covidex is a covid-19 tracking application designed for multiple users such as common patients, doctors, health officials and and immigration officials. Its goal is to help us deal with the reality of the situation we currently face and try to move forward. Patients would be able to upload their health status details onto the platform. This in turn would be monitored by both doctors and health officials to both help the patients as well as track the progress of the virus. We would be able to monitor daily cases and get a better understanding of how the virus is changing to help mitigate the risks for the rest of the population.',
@@ -188,7 +212,7 @@ function Home() {
 
         },
         {
-            id: 5,
+            id: 6,
             title: 'NBA Fantasy Helper',
             year: 2023, // Add the year for this project
             description: 'NBA Fantasy Draft Helper is your ultimate companion for building a winning fantasy basketball team! This innovative project brings together the power of data and user-friendly design, providing NBA enthusiasts with a comprehensive tool to make the best decisions during their fantasy drafts. NBA Stats Explorer simplifies the process of understanding player performance by offering a visually appealing and easy-to-navigate platform. Whether youre a fantasy basketball enthusiast, a sports analyst, or just a passionate NBA fan, this tool provides a unique perspective on player capabilities, fostering a deeper appreciation for the game.',
@@ -201,7 +225,7 @@ function Home() {
 
         },
         {
-            id: 6,
+            id: 7,
             title: 'Mave Grocery Store',
             year: 2021, // Add the year for this project
             description: 'Mave Grocery Store project is a web application where customers can experience the convenience of grocery shopping from the comfort of their homes. By creating a personalized account, users gain access to a vast array of products from fresh produce to cleaning supplies. Our user-friendly interface allows customers to browse through a catalog, add items to their cart and securely complete their purchases online. With simple navigation, secure payment options and timely delivery services, our web application redefines the way people shop for groceries, making it effortless, efficient, and enjoyable.',
@@ -216,7 +240,7 @@ function Home() {
 
         },
         {
-            id: 7,
+            id: 8,
             title: 'Eldr ',
             year: 2021, // Add the year for this project
             description: 'Eldr is a friendly app made for elderly people. It helps them talk to others, play games, and make new friends easily. The app is easy to use and makes seniors feel less lonely by connecting them with others. The Figma project and mockup website show how Eldr works, making it simple for everyone to understand its purpose: bringing happiness and friendship to older adults. Eldr is all about making seniors lives better by connecting them with others in a fun and easy way.',
