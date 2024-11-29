@@ -7,7 +7,7 @@ function App() {
      <BrowserRouter>
         <Routes>
           <Route index element={<Home/>} />
-          <Route path="/home" element={<Home/>} />
+          <Route path="/portfolio-vithu" element={<Home/>} />
         </Routes>
       </BrowserRouter>
     </div>
